@@ -1,11 +1,23 @@
 package com.devsuperior.movieflix.dto;
 
+import org.springframework.beans.BeanUtils;
+
+import com.devsuperior.movieflix.entities.Genre;
+
 public class GenreDTO {
 
     private Long id;
     private String name;
+    
+    public GenreDTO() {
+    	
+    }
 
-    public Long getId() {
+    public GenreDTO(Genre entity) {
+    	BeanUtils.copyProperties(entity, this);
+	}
+
+	public Long getId() {
         return id;
     }
 
