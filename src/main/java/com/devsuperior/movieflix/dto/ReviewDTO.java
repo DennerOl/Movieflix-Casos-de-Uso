@@ -2,6 +2,10 @@ package com.devsuperior.movieflix.dto;
 
 import java.io.Serializable;
 
+import org.springframework.beans.BeanUtils;
+
+import com.devsuperior.movieflix.entities.Review;
+
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
@@ -20,6 +24,30 @@ public class ReviewDTO  implements Serializable{
     private String userName;
     private String userEmail;
     
+    public ReviewDTO() {
+    	
+    }
+    
+    public ReviewDTO(Long id, String text, Long movieId, Long userId, String userName, String userEmail) {
+		super();
+		this.id = id;
+		this.text = text;
+		this.movieId = movieId;
+		this.userId = userId;
+		this.userName = userName;
+		this.userEmail = userEmail;
+	}
+    
+    public ReviewDTO(Review entity) {
+    	BeanUtils.copyProperties(entity, this);
+    	movieId = entity.getMovie().getId();
+        userId = entity.getUser().getId();
+        userName = entity.getUser().getUsername();
+        userEmail = entity.getUser().getEmail();
+
+    }
+    
+	
 	public Long getId() {
 		return id;
 	}
