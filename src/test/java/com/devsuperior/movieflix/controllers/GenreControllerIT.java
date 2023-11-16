@@ -14,7 +14,9 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.devsuperior.movieflix.dto.GenreDTO;
 import com.devsuperior.movieflix.tests.TokenUtil;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -23,6 +25,9 @@ public class GenreControllerIT {
 
 	@Autowired
 	private MockMvc mockMvc;
+	
+	@Autowired
+	private ObjectMapper objectMapper;
 
 	@Autowired
 	private TokenUtil tokenUtil;
@@ -56,6 +61,7 @@ public class GenreControllerIT {
 
 		String accessToken = tokenUtil.obtainAccessToken(mockMvc, visitorUsername, visitorPassword);
 		
+
 		ResultActions result =
 				mockMvc.perform(get("/genres")
 					.header("Authorization", "Bearer " + accessToken)

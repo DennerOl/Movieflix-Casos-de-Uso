@@ -1,19 +1,32 @@
 package com.devsuperior.movieflix.dto;
 
+import java.io.Serializable;
+
 import org.springframework.beans.BeanUtils;
 
 import com.devsuperior.movieflix.entities.Genre;
 
-public class GenreDTO {
+import jakarta.validation.constraints.NotBlank;
+
+@SuppressWarnings("serial")
+public class GenreDTO implements Serializable  {
 
     private Long id;
+    @NotBlank(message = "Campo requerido")
     private String name;
     
     public GenreDTO() {
-    	
+    		
     }
+        
 
-    public GenreDTO(Genre entity) {
+    public GenreDTO(Long id, @NotBlank(message = "Campo requerido") String name) {
+		this.id = id;
+		this.name = name;
+	}
+
+
+	public GenreDTO(Genre entity) {
     	BeanUtils.copyProperties(entity, this);
 	}
 

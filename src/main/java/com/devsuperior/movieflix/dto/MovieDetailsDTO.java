@@ -1,16 +1,48 @@
 package com.devsuperior.movieflix.dto;
 
-public class MovieDetailsDTO {
+import java.io.Serializable;
+
+import org.springframework.beans.BeanUtils;
+
+import com.devsuperior.movieflix.entities.Movie;
+
+import jakarta.validation.constraints.NotBlank;
+
+@SuppressWarnings("serial")
+public class MovieDetailsDTO implements Serializable{
 
     private Long id;
     private String title;
-    private String subTitle;
-    private Integer year;
-    private String imgUrl;
-    private String synopsis;
+    private String subTitle;    
+    private Integer year;   
+    private String imgUrl;    
+    private String synopsis;  
     private GenreDTO genre;
+    
+    public MovieDetailsDTO() {
+    }
 
-    public Long getId() {
+    public MovieDetailsDTO(Long id, String title, String subTitle, Integer year, String imgUrl, String synopsis,
+			GenreDTO genre) {
+		this.id = id;
+		this.title = title;
+		this.subTitle = subTitle;
+		this.year = year;
+		this.imgUrl = imgUrl;
+		this.synopsis = synopsis;
+		this.genre = genre;
+	}
+    
+    
+
+	public MovieDetailsDTO(Movie entity) {
+		BeanUtils.copyProperties(entity, this);
+		genre = new GenreDTO(entity.getGenre());
+
+	}
+	
+
+	public Long getId() {
         return id;
     }
 

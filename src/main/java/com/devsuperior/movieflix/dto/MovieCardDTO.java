@@ -1,10 +1,13 @@
 package com.devsuperior.movieflix.dto;
 
+import java.io.Serializable;
+
 import org.springframework.beans.BeanUtils;
 
 import com.devsuperior.movieflix.entities.Movie;
 
-public class MovieCardDTO {
+@SuppressWarnings("serial")
+public class MovieCardDTO implements Serializable{ 
 
 	private Long id;
 	private String title;
@@ -17,6 +20,17 @@ public class MovieCardDTO {
 		BeanUtils.copyProperties(entity, this);
 
 	}
+	
+
+	public MovieCardDTO(Long id, String title, String subTitle, Integer year, String imgUrl) {
+		this.id = id;
+		this.title = title;
+		this.subTitle = subTitle;
+		this.year = year;
+		this.imgUrl = imgUrl;
+	}
+
+
 
 	public Long getId() {
 		return id;

@@ -1,12 +1,26 @@
 package com.devsuperior.movieflix.dto;
 
+import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
+
+import org.springframework.beans.BeanUtils;
+
 import com.devsuperior.movieflix.entities.User;
 
-public class UserDTO {
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+
+@SuppressWarnings("serial")
+public class UserDTO implements Serializable{ 
 
 	private Long id;
+	@NotBlank(message = "Campo obrigatório")
 	private String name;
+	@Email(message = "Entre com email válido")
 	private String email;
+	
+	Set<RoleDTO> roles = new HashSet<>();
 	
 	public UserDTO() {
 	}
@@ -18,9 +32,9 @@ public class UserDTO {
 	}
 	
 	public UserDTO(User entity) {
-		id = entity.getId();
-		name = entity.getName();
-		email = entity.getEmail();
+		 BeanUtils.copyProperties(entity, this);
+		 entity.getRoles().forEach(role -> this.roles.add(new RoleDTO(role)));
+		 
 	}
 
 	public Long getId() {
@@ -45,5 +59,9 @@ public class UserDTO {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+	
+	public Set<RoleDTO> getRoles() {
+		return roles;
 	}
 }

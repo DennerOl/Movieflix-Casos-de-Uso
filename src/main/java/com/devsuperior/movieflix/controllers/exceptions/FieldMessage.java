@@ -1,17 +1,20 @@
-package com.devsuperior.movieflix.dto;
+package com.devsuperior.movieflix.controllers.exceptions;
 
 import java.io.Serializable;
-
+/* está classe irá carregar de cada campo a mensagem
+ * que coloquei no DTO
+ */
 @SuppressWarnings("serial")
-public class FieldMessageDTO implements Serializable{ 
+public class FieldMessage implements Serializable{ 
 
 	private String fieldName;
 	private String message;
 	
-	public FieldMessageDTO() {
+	public FieldMessage() {
+		
 	}
 
-	public FieldMessageDTO(String fieldName, String message) {
+	public FieldMessage(String fieldName, String message) {
 		this.fieldName = fieldName;
 		this.message = message;
 	}
@@ -31,4 +34,6 @@ public class FieldMessageDTO implements Serializable{
 	public void setMessage(String message) {
 		this.message = message;
 	}
+	
+	
 }

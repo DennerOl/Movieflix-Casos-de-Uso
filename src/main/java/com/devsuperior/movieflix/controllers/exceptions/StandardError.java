@@ -1,18 +1,18 @@
-package com.devsuperior.movieflix.dto;
+package com.devsuperior.movieflix.controllers.exceptions;
 
 import java.io.Serializable;
 import java.time.Instant;
 
 @SuppressWarnings("serial")
-public class StandardErrorDTO implements Serializable{
+public class StandardError implements Serializable{
 
 	private Instant timestamp;
 	private Integer status;
 	private String error;
-	private String message;
+	private String  message;
 	private String path;
 	
-	public StandardErrorDTO() {
+	public StandardError() {
 	}
 
 	public Instant getTimestamp() {
@@ -54,4 +54,6 @@ public class StandardErrorDTO implements Serializable{
 	public void setPath(String path) {
 		this.path = path;
 	}
+	
+	
 }

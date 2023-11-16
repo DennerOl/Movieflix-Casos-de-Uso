@@ -3,6 +3,7 @@ package com.devsuperior.movieflix.dto;
 import java.util.ArrayList;
 import java.util.List;
 
+@SuppressWarnings("serial")
 public class ValidationErrorDTO extends StandardErrorDTO {
 
 	private List<FieldMessageDTO> errors = new ArrayList<>();

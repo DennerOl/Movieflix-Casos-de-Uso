@@ -1,9 +1,12 @@
 package com.devsuperior.movieflix.dto;
 
+import java.io.Serializable;
+
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
-public class ReviewDTO {
+@SuppressWarnings("serial")
+public class ReviewDTO  implements Serializable{
 
     private Long id;
 
